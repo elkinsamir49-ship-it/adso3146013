@@ -5,8 +5,8 @@ class Controller {
     public $view;
 
     public function __construct() {
-        $this->model = "usuario.php";
-        $this->view = "view.php";
+        $this->model = "models/usuario.php";
+        $this->view = "views/view.php";
         require_once $this->model;
         
 
@@ -14,6 +14,7 @@ class Controller {
     }
 
     public function index() {
+        $usuarios = usuario::consultarTodos();
         require_once $this->view;
     }
 
@@ -22,4 +23,7 @@ class Controller {
        
         $nuevoUsuario->insertar();
     }
+    public function listar() {
+    }
 }
+

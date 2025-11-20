@@ -39,6 +39,15 @@ class Usuario {
         $stmt->execute();
 
     }
+
+   public static function consultarTodos() {
+       $conexion = self::connect();
+       $query = 'SELECT * FROM usuarios;';
+       $statement = $conexion->prepare($query);
+       $statement->execute();
+         return $statement->fetchAll(PDO::FETCH_CLASS |PDO::FETCH_PROPS_LATE,"usuario",['id','nombre','correo','rol','telefono']);
+
+    }
     public function getId() {
         return $this->id;
     }
